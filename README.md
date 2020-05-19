@@ -75,7 +75,14 @@ Once we created a Model RDM, we can first plot it as a heatmap. We can also run 
 ## 6. Create a Model RDM for all DNNs at once.
 *Script*: [**Creating_Model_RDMs.ipynb**](/Creating_Model_RDMs.ipynb) 
 
-After running steps 0-5 for one model, we can correlate between the representations of different models by creating a model RDM for multiple models. To that end, we can create a "number of layers in model 1 x number of layers in model 2" matrix containing the correlations for the layers of one model with the layers of the other model.  To create the matrix of the size "number of all layers x number of layers", we can simply put together the individual Model RDMs and the inter-model Model RDM together in a symmetric matrix (making sure to transpose inter-model RDMs wherever needed). 
+After running steps 0-5 for one model, we can correlate between the representations of different models by creating a model RDM for multiple models. To that end, we can create a "number of layers in model 1 x number of layers in model 2" matrix containing the correlations for the layers of one model with the layers of the other model.  To create the matrix of the size "number of all layers x number of all layers", we can simply put together the individual Model RDMs and the inter-model Model RDM together in a symmetric matrix (making sure to transpose inter-model RDMs wherever needed). We have to add the details of the desired network here:
+
+if multiple_models == 1:
+    num_layers_2 = 16 #change depending on the model
+    model_begin_2 = 0
+    model_name_2 = selected_layers[model_begin_2].get('model')
+    layer_names_2 = []
+
 
 ## 7. Run MDS using all layers from all DNNs. 
 *Script*: [**Plotting_Model_RDM.ipynb**](/Plotting_Model_RDM.ipynb)
